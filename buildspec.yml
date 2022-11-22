@@ -9,7 +9,7 @@ phases:
     commands:
       - echo Build started on `date`
       - echo Building the SpringBoot project...
-      - ./gradlew build
+      - ./gradlew build --stacktrace
 
       - echo Building the Docker image...
       - IMAGE_TAG=$(date '+%Y%m%d.%H%M%S.%N')
