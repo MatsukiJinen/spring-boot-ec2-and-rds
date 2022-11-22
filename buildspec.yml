@@ -3,14 +3,6 @@ version: 0.2
 phases:
   pre_build:
     commands:
-      - echo Java install...
-      - yum install -y java-17-amazon-corretto
-      - java -version
-      - /usr/sbin/alternatives --set java /usr/lib/jvm/java-17-amazon-corretto.aarch64/bin/java
-      - java -version
-      - /usr/sbin/alternatives --display java
-      - export JAVA_HOME=/usr/lib/jvm/java-17-amazon-corretto.aarch64
-
       - echo Logging in to Amazon ECR...
       - $(aws ecr get-login --no-include-email --region $AWS_DEFAULT_REGION)
   build:
