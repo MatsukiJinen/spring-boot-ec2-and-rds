@@ -1,6 +1,9 @@
 version: 0.2
 
 phases:
+  install:
+    runtime-versions:
+      java: corretto17
   pre_build:
     commands:
       - echo Logging in to Amazon ECR...
@@ -9,7 +12,7 @@ phases:
     commands:
       - echo Build started on `date`
       - echo Building the SpringBoot project...
-      - ./gradlew build --stacktrace
+      - ./gradlew build --info
 
       - echo Building the Docker image...
       - IMAGE_TAG=$(date '+%Y%m%d.%H%M%S.%N')
