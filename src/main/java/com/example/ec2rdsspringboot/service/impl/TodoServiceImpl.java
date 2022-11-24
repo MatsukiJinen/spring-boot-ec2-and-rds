@@ -1,10 +1,10 @@
 package com.example.ec2rdsspringboot.service.impl;
 
 import com.example.ec2rdsspringboot.entity.Todo;
+import com.example.ec2rdsspringboot.error.TodoNotFoundException;
 import com.example.ec2rdsspringboot.repository.TodoRepository;
 import com.example.ec2rdsspringboot.service.TodoService;
 import org.springframework.stereotype.Service;
-import org.webjars.NotFoundException;
 
 import java.util.List;
 import java.util.Optional;
@@ -24,7 +24,7 @@ public class TodoServiceImpl implements TodoService {
     }
 
     @Override
-    public Todo getTodo(int id) {
+    public Todo getTodo(int id) throws TodoNotFoundException{
         return findTodoById(id);
     }
 
@@ -48,9 +48,9 @@ public class TodoServiceImpl implements TodoService {
 
     private Todo findTodoById(int id) {
         Optional<Todo> todo = repository.findById(id);
-        if (todo.isPresent()) {
-            return todo.get();
+        if (!todo.isPresent()) {
+            throw new TodoNotFoundException("Item Not found Id: " + id);
         }
-        throw new NotFoundException("Item Not found Id: " + id);
+        return todo.get();
     }
 }
