@@ -24,8 +24,13 @@ public class TodoServiceImpl implements TodoService {
     }
 
     @Override
-    public Todo getTodo(int id) throws TodoNotFoundException{
+    public Todo getTodoById(int id) throws TodoNotFoundException{
         return findTodoById(id);
+    }
+
+    @Override
+    public Todo getTodoByTitle(String title) {
+        return repository.findByTitleIgnoreCase(title);
     }
 
     @Override

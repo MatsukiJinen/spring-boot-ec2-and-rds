@@ -24,7 +24,7 @@ public class TodoController {
 
     @GetMapping("/{id}")
     public ResponseEntity<Todo> getTodo(@PathVariable int id) {
-        return ResponseEntity.ok(service.getTodo(id));
+        return ResponseEntity.ok(service.getTodoById(id));
     }
 
     @PostMapping
